@@ -14,9 +14,10 @@ myMSALObj.handleRedirectPromise()
              * from SUSI flow. "tfp" claim in the id token tells us the policy (NOTE: legacy policies may use "acr" instead of "tfp").
              * To learn more about B2C tokens, visit https://docs.microsoft.com/en-us/azure/active-directory-b2c/tokens-overview
              */
-            if (response.idTokenClaims['tfp'].toUpperCase() === b2cPolicies.names.signUpSignIn.toUpperCase()) {
-                handleResponse(response);
-            }
+            handleResponse(response);
+            // if (response.idTokenClaims['tfp'].toUpperCase() === b2cPolicies.names.signUpSignIn.toUpperCase()) {
+
+            // }
         }
     })
     .catch(error => {
@@ -26,7 +27,7 @@ myMSALObj.handleRedirectPromise()
 
 function setAccount(account) {
     accountId = account.homeAccountId;
-    username = account.username;
+    username = account?.name;
     welcomeUser(username);
 }
 
@@ -42,20 +43,20 @@ function selectAccount() {
     if (currentAccounts.length < 1) {
         return;
     } else if (currentAccounts.length > 1) {
-       
+
         /**
          * Due to the way MSAL caches account objects, the auth response from initiating a user-flow
          * is cached as a new account, which results in more than one account in the cache. Here we make
          * sure we are selecting the account with homeAccountId that contains the sign-up/sign-in user-flow, 
          * as this is the default flow the user initially signed-in with.
          */
-         const accounts = currentAccounts.filter(account =>
+        const accounts = currentAccounts.filter(account =>
             account.homeAccountId.toUpperCase().includes(b2cPolicies.names.signUpSignIn.toUpperCase())
             &&
             account.idTokenClaims.iss.toUpperCase().includes(b2cPolicies.authorityDomain.toUpperCase())
             &&
-            account.idTokenClaims.aud === msalConfig.auth.clientId 
-            );
+            account.idTokenClaims.aud === msalConfig.auth.clientId
+        );
 
         if (accounts.length > 1) {
             // localAccountId identifies the entity for which the token asserts information.
@@ -122,8 +123,8 @@ function getTokenRedirect(request) {
     * See here for more info on account retrieval: 
     * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-common/docs/Accounts.md
     */
-    request.account = myMSALObj.getAccountByHomeId(accountId); 
-   
+    request.account = myMSALObj.getAccountByHomeId(accountId);
+
     /**
      * 
      */
@@ -144,11 +145,11 @@ function getTokenRedirect(request) {
                 // fallback to interaction when silent call fails
                 return myMSALObj.acquireTokenRedirect(request);
             } else {
-                console.log(error);   
+                console.log(error);
             }
-    });
+        });
 }
- 
+
 // Acquires and access token and then passes it to the API call
 function passTokenToApi() {
     if (!accessToken) {
@@ -156,8 +157,8 @@ function passTokenToApi() {
     } else {
         try {
             callApi(apiConfig.webApi, accessToken);
-        } catch(error) {
-            console.log(error); 
+        } catch (error) {
+            console.log(error);
         }
     }
 }
@@ -174,4 +175,10 @@ function editProfile() {
     editProfileRequest.loginHint = myMSALObj.getAccountByHomeId(accountId).username;
 
     myMSALObj.loginRedirect(editProfileRequest);
+}
+
+function resetPassword() {
+
+
+
 }

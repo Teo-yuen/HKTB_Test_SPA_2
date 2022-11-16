@@ -7,41 +7,41 @@
  */
 
 const msalConfig = {
-    auth: {
-      clientId: "2fdd06f3-7b34-49a3-a78b-0cf1dd87878e", // This is the ONLY mandatory field; everything else is optional.
-      authority: b2cPolicies.authorities.signUpSignIn.authority, // Choose sign-up/sign-in user-flow as your default.
-      knownAuthorities: [b2cPolicies.authorityDomain], // You must identify your tenant's domain as a known authority.
-      redirectUri: "http://localhost:6420", // You must register this URI on Azure Portal/App Registration. Defaults to "window.location.href".
-    },
-    cache: {
-      cacheLocation: "sessionStorage", // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
-      storeAuthStateInCookie: false, // If you wish to store cache items in cookies as well as browser cache, set this to "true".
-    },
-    system: {
-      loggerOptions: {
-        loggerCallback: (level, message, containsPii) => {
-          if (containsPii) {
+  auth: {
+    clientId: "4966e93c-06c2-4a32-9320-f9cd9f3792f7", // This is the ONLY mandatory field; everything else is optional.
+    authority: b2cPolicies.authorities.signUpSignIn.authority, // Choose sign-up/sign-in user-flow as your default.
+    knownAuthorities: [b2cPolicies.authorityDomain], // You must identify your tenant's domain as a known authority.
+    redirectUri: "http://localhost:6420", // You must register this URI on Azure Portal/App Registration. Defaults to "window.location.href".
+  },
+  cache: {
+    cacheLocation: "sessionStorage", // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
+    storeAuthStateInCookie: false, // If you wish to store cache items in cookies as well as browser cache, set this to "true".
+  },
+  system: {
+    loggerOptions: {
+      loggerCallback: (level, message, containsPii) => {
+        if (containsPii) {
+          return;
+        }
+        switch (level) {
+          case msal.LogLevel.Error:
+            console.error(message);
             return;
-          }
-          switch (level) {
-            case msal.LogLevel.Error:
-              console.error(message);
-              return;
-            case msal.LogLevel.Info:
-              console.info(message);
-              return;
-            case msal.LogLevel.Verbose:
-              console.debug(message);
-              return;
-            case msal.LogLevel.Warning:
-              console.warn(message);
-              return;
-          }
+          case msal.LogLevel.Info:
+            console.info(message);
+            return;
+          case msal.LogLevel.Verbose:
+            console.debug(message);
+            return;
+          case msal.LogLevel.Warning:
+            console.warn(message);
+            return;
         }
       }
     }
-  };
-  
+  }
+};
+
 /**
  * Scopes you add here will be prompted for user consent during sign-in.
  * By default, MSAL.js will add OIDC scopes (openid, profile, email) to any login request.
