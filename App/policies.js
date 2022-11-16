@@ -5,16 +5,12 @@
  */
 const b2cPolicies = {
     names: {
-        signUpSignIn: "B2C_1A_SIGNIN",
-        forgotPassword: 'B2C_1_reset_v3',
+        signUpSignIn: "B2C_1_SIGNIN"
     },
     authorities: {
         signUpSignIn: {
-            authority: "https://b2cdemo02.b2clogin.com/B2CDemo02.onmicrosoft.com/B2C_1A_SIGNIN",
-        },
-        forgotPassword: {
-            authority: 'https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/B2C_1_reset_v3',
-        },
+            authority: "https://partnernet.b2clogin.com/partnernet.onmicrosoft.com/B2C_1_SIGNIN",
+        }
     },
-    authorityDomain: "b2cdemo02.b2clogin.com"
+    authorityDomain: "partnernet.b2clogin.com"
 }

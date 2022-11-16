@@ -176,9 +176,3 @@ function editProfile() {
 
     myMSALObj.loginRedirect(editProfileRequest);
 }
-
-function resetPassword() {
-
-
-
-}
