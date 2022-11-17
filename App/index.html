@@ -18,22 +18,28 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/">Azure AD B2C</a>
-    <div class="btn-group ml-auto dropleft">
-      <!-- <button type="button" id="editProfileButton" class="btn btn-secondary d-none" onclick="editProfile()">Edit
-        Profile</button> -->
-      <button type="button" id="signIn" class="btn btn-secondary" onclick="signIn()">Sign-in</button>
-      <button type="button" id="signOut" class="btn btn-success d-none" onclick="signOut()">Sign-out</button>
+  <img src="./image/header.png" alt="header image">
+
+  <div class="centerAlign">
+    <div>
+
+      <p>Welcome to PartnerNet – An interactive platform specially designed for travel trade partners to build
+        network and explore business opportunities.</p>
+
+      <h1 class="clear">Already a TSP / Individual user? Please login:</h1>
+      <div class="btnContainer">
+        <button type="button" id="signIn" class="btn btnbg" onclick="signIn()">Sign-in</button>
+        <button type="button" id="signOut" class="btn btnbg d-none" onclick="signOut()">Sign-out</button>
+
+      </div>
+      <h2 id="welcome-div" class="card-header text-center d-none"></h2>
+      <br />
+      <p>Please follow <a href="http://localhost:6420">this link go back</a>.</p>
     </div>
-  </nav>
-  <br>
-  <h5 id="title-div" class="card-header text-center">Vanilla JavaScript single-page application built with MSAL.js</h5>
-  <h2 id="welcome-div" class="card-header text-center d-none"></h2>
-  <br>
+
+  </div>
 
 
-  <p>Please follow <a href="http://localhost:6420">this link go back</a>.</p>
 
   <!-- importing bootstrap.js and supporting js libraries -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -57,5 +63,61 @@
   <!-- <script type="text/javascript" src="./authPopup.js"></script> -->
   <script type="text/javascript" src="./api.js"></script>
 </body>
+
+<style>
+  .centerAlign {
+    text-align: center;
+    padding-top: 20px
+  }
+
+  .clear {
+    --swiper-theme-color: #007aff;
+    --swiper-navigation-size: 44px;
+    font: 18px Microsoft JhengHei, Microsoft YaHei, Hiragino Sans GB, Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-family: 'Roboto-Med';
+    font-weight: normal;
+    line-height: 1.28;
+    color: #a40708;
+  }
+
+  .btnContainer {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btnbg {
+    --swiper-theme-color: #007aff;
+    --swiper-navigation-size: 44px;
+    font: 18px Microsoft JhengHei, Microsoft YaHei, Hiragino Sans GB, Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', "Microsoft JhengHei", "Microsoft YaHei", "Hiragino Sans GB", Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    padding: 5px 15px;
+    min-height: 38px;
+    transition: background-color 0.4s ease 0s, color 0.4s ease 0s;
+    position: relative;
+    display: inline-block;
+    min-width: 115px;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #fff;
+    background: #ff7400;
+    margin-right: 5px;
+    line-height: 28px;
+  }
+</style>
+
 
 </html>
